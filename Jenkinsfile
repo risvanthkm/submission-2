@@ -7,13 +7,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git clone 'git@github.com:risvanthkm/submission-2.git'
-            }
-            
-        }
-
         stage('Build User Service') {
             steps {
                 dir('backend/user-service') {
