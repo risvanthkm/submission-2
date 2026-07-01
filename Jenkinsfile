@@ -1,0 +1,91 @@
+pipeline {
+    agent any
+
+    environment {
+        USER_IMAGE = "risvanthkm/user-service:latest"
+        ORDER_IMAGE = "risvanthkm/order-service:latest"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git clone 'git@github.com:risvanthkm/submission-2.git'
+            }
+            
+        }
+
+        stage('Build User Service') {
+            steps {
+                dir('backend/user-service') {
+                    sh 'go build '
+                }
+            }
+        }
+
+        stage('Test User Service') {
+            steps {
+                dir('backend/user-service') {
+                    sh 'go test ./...'
+                }
+            }
+        }
+
+        stage('Build Order Service') {
+            steps {
+                dir('backend/order-service') {
+                    sh 'go build'
+                }
+            }
+        }
+
+        stage('Test Order Service') {
+            steps {
+                dir('backend/order-service') {
+                    sh 'go test ./...'
+                }
+            }
+        }
+
+        stage('Build Docker Images') {
+            steps {
+                sh """
+                docker build -t $USER_IMAGE backend/user-service
+                docker build -t $ORDER_IMAGE backend/order-service
+                """
+            }
+        }
+
+        stage('Push Images') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub',
+                        usernameVariable: 'DOCKER_USER',
+                        passwordVariable: 'DOCKER_PASS'
+                    )
+                ]) {
+                    sh """
+                    echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+
+                    docker push $USER_IMAGE
+                    docker push $ORDER_IMAGE
+                    """
+                }
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh """
+                kubectl apply -f k8s/user-service/
+                kubectl apply -f k8s/order-service/
+
+                kubectl rollout restart deployment/user-service
+                kubectl rollout restart deployment/order-service
+                """
+            }
+        }
+
+    }
+}
+        

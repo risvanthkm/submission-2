@@ -88,6 +88,6 @@ func main() {
 	http.HandleFunc("/api/users", enableCORS(handleGetUsers))
 	http.HandleFunc("/api/user", enableCORS(handleGetUserByID))
 
-	log.Printf("User Service starting on 127.0.0.1:%s", port)
-	log.Fatal(http.ListenAndServe("127.0.0.1:"+port, nil))
+	log.Printf("User Service starting on 0.0.0.0:%s", port)
+	log.Fatal(http.ListenAndServe("0.0.0.0:"+port, nil))
 }
