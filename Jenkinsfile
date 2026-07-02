@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        KUBECONFIG = "/var/lib/jenkins/.kube/config"
         USER_IMAGE = "risvanthkm/user-service:latest"
         ORDER_IMAGE = "risvanthkm/order-service:latest"
     }
