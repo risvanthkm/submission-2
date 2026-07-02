@@ -10,7 +10,7 @@ pipeline {
         stage('Build User Service') {
             steps {
                 dir('backend/user-service') {
-                    sh 'go build '
+                    sh '/usr/local/go/bin/go build '
                 }
             }
         }
@@ -18,7 +18,7 @@ pipeline {
         stage('Test User Service') {
             steps {
                 dir('backend/user-service') {
-                    sh 'go test ./...'
+                    sh '/usr/local/go/bin/go test ./...'
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
         stage('Build Order Service') {
             steps {
                 dir('backend/order-service') {
-                    sh 'go build'
+                    sh '/usr/local/go/bin/go build'
                 }
             }
         }
@@ -34,7 +34,7 @@ pipeline {
         stage('Test Order Service') {
             steps {
                 dir('backend/order-service') {
-                    sh 'go test ./...'
+                    sh '/usr/local/go/bin/go test ./...'
                 }
             }
         }
