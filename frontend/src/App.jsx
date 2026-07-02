@@ -15,8 +15,8 @@ function App() {
   const [errorUsers, setErrorUsers] = useState(null)
   const [errorOrders, setErrorOrders] = useState(null)
 
-  const userServiceUrl = import.meta.env.VITE_USER_SERVICE_URL || 'http://localhost:8081'
-  const orderServiceUrl = import.meta.env.VITE_ORDER_SERVICE_URL || 'http://localhost:8082'
+  const userServiceUrl = import.meta.env.VITE_USER_SERVICE_URL 
+  const orderServiceUrl = import.meta.env.VITE_ORDER_SERVICE_URL 
 
   const checkHealth = async () => {
     setUserServiceStatus(prev => ({ ...prev, loading: true }))
