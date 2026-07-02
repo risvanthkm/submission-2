@@ -20,7 +20,7 @@ spec:
       containers:
       - name: order-service
 
-        image: YOUR_DOCKER_USERNAME/order-service:latest
+        image: risvanthkm/order-service:latest
 
         imagePullPolicy: Always
 
