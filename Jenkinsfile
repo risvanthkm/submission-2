@@ -74,8 +74,8 @@ pipeline {
                 kubectl apply -f k8s/user-service/
                 kubectl apply -f k8s/order-service/
 
-                kubectl rollout restart deployment/user-service
-                kubectl rollout restart deployment/order-service
+                kubectl rollout restart deployment/user-service-deployment
+                kubectl rollout restart deployment/order-service-deployment
                 """
             }
         }
