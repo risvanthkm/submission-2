@@ -5,21 +5,15 @@ metadata:
   name: order-service-ingress
 
 spec:
-
   ingressClassName: nginx
 
   rules:
   - http:
-
       paths:
-
-      - path: /order
+      - path: /api/orders
         pathType: Prefix
-
         backend:
-
           service:
             name: order-service
-
             port:
               number: 8082
