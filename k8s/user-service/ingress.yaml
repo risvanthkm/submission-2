@@ -5,21 +5,15 @@ metadata:
   name: user-service-ingress
 
 spec:
-
   ingressClassName: nginx
 
   rules:
   - http:
-
       paths:
-
-      - path: /user
+      - path: /api/users
         pathType: Prefix
-
         backend:
-
           service:
             name: user-service
-
             port:
               number: 8081
