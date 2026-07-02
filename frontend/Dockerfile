@@ -4,8 +4,9 @@ WORKDIR /app
 
 COPY package*.json .
 
-ENV VITE_USER_SERVICE_URL=
-ENV VITE_ORDER_SERVICE_URL=
+ENV VITE_USER_SERVICE_URL=https://nittfest-devops.duckdns.org
+ENV VITE_ORDER_SERVICE_URL=https://nittfest-devops.duckdns.org
+
 RUN npm install
 
 COPY . .
