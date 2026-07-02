@@ -4,9 +4,8 @@ WORKDIR /app
 
 COPY package*.json .
 
-ENV VITE_USER_SERVICE_URL=/api/users
-ENV VITE_ORDER_SERVICE_URL=/api/orders
-
+ENV VITE_USER_SERVICE_URL=
+ENV VITE_ORDER_SERVICE_URL=
 RUN npm install
 
 COPY . .
