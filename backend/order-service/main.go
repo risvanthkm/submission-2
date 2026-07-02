@@ -56,7 +56,7 @@ func enableCORS(next http.HandlerFunc) http.HandlerFunc {
 func getUserServiceURL() string {
 	url := os.Getenv("USER_SERVICE_URL")
 	if url == "" {
-		url = "http://localhost:8081"
+		url = "http://192.168.49.2"
 	}
 	return url
 }
